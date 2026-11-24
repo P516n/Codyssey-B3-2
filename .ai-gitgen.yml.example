@@ -1,0 +1,30 @@
+# .ai-gitgen.yml - 팀 Git 커밋 및 PR 컨벤션 설정 예시
+
+# 유효한 커밋 타입 prefix
+commit_types:
+  - feat
+  - fix
+  - docs
+  - style
+  - refactor
+  - test
+  - chore
+
+# 출력 언어 (ko: 한국어, en: 영어)
+language: ko
+
+# 제목 길이 제한
+max_commit_title_length: 50
+max_pr_title_length: 80
+
+# 커밋 본문 포함 여부 (true / false)
+include_commit_body: true
+
+# PR 본문 필수 섹션
+pr_sections:
+  - Why
+  - What
+  - How to Test
+
+# 추가 프롬프트 지침 (팀 전용 규칙)
+custom_instructions: "팀의 간결하고 실용적인 코드 리뷰 문화를 위해 군더더기 없는 문장을 사용하세요."
