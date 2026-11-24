@@ -11,23 +11,33 @@ from gitgen.safe_mode import (
 
 class TestSafeMode(unittest.TestCase):
     def test_mask_api_keys(self):
+        # GitHub Secret Scanner 오탐(False Positive) 방지를 위해 문자열 결합으로 더미 키 생성
+        dummy_openai = "sk-" + "fake_openai_test_key_1234567890"
+        dummy_gemini = "AIza" + "SyDummyGoogleApiKeyForTesting123456"  # 4 + 35 = 39자
+        dummy_anthropic = "sk-ant-api03-" + "fake_anthropic_key_1234567890"
+        dummy_github = "ghp_" + "dummyGitHubTokenForTesting1234567890"  # 4 + 36 = 40자
+
         sample = (
-            "openai = sk-1234567890abcdef1234567890\n"
-            "gemini = AIzaSyD1234567890abcdefghijklmnopqrstuv\n"
-            "anthropic = sk-ant-api03-1234567890abcdef1234567890\n"
-            "github = ghp_1234567890abcdefghijklmnopqrstuvwxyz12\n"
+            f"openai = {dummy_openai}\n"
+            f"gemini = {dummy_gemini}\n"
+            f"anthropic = {dummy_anthropic}\n"
+            f"github = {dummy_github}\n"
             "email: dev@example.com\n"
             "password: mySuperSecret123!\n"
             "Authorization: Bearer mySecretToken1234567890"
         )
         masked, count = mask_sensitive_text(sample)
         self.assertGreater(count, 0)
-        self.assertNotIn("sk-1234567890", masked)
-        self.assertNotIn("AIzaSyD", masked)
+        self.assertNotIn(dummy_openai, masked)
+        self.assertNotIn(dummy_gemini, masked)
+        self.assertNotIn(dummy_anthropic, masked)
+        self.assertNotIn(dummy_github, masked)
         self.assertNotIn("dev@example.com", masked)
         self.assertNotIn("mySuperSecret123!", masked)
         self.assertIn("[REDACTED_OPENAI_KEY]", masked)
         self.assertIn("[REDACTED_GEMINI_KEY]", masked)
+        self.assertIn("[REDACTED_ANTHROPIC_KEY]", masked)
+        self.assertIn("[REDACTED_GITHUB_TOKEN]", masked)
         self.assertIn("[REDACTED_EMAIL]", masked)
         self.assertIn("[REDACTED_SECRET]", masked)
 

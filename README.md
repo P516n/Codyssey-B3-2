@@ -257,7 +257,7 @@ $ python main.py commit
 ### Safe Mode ON / OFF 비교
 ```diff
 # 원본 Git Diff (Safe Mode OFF 전송 시):
-- api_key = "AIzaSyD-1234567890abcdefghijklmnopqrstuv"
+- api_key = "AIzaSy_SAMPLE_KEY_FOR_DEMONSTRATION"
 - db_password = "MySuperSecretPassword2026!"
 - admin_email = "lead_developer@company.org"
 

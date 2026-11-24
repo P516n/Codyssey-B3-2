@@ -13,9 +13,9 @@ from gitgen.git_service import GitContext
 # Regex patterns for sensitive information
 SENSITIVE_PATTERNS: List[Tuple[str, re.Pattern, str]] = [
     # 1. API Keys and Tokens
+    ("Anthropic API Key", re.compile(r"sk-ant-[a-zA-Z0-9_\-]{20,}", re.IGNORECASE), "[REDACTED_ANTHROPIC_KEY]"),
     ("OpenAI API Key", re.compile(r"sk-[a-zA-Z0-9_\-]{20,}", re.IGNORECASE), "[REDACTED_OPENAI_KEY]"),
     ("Google API Key", re.compile(r"AIza[0-9A-Za-z\-_]{35}"), "[REDACTED_GEMINI_KEY]"),
-    ("Anthropic API Key", re.compile(r"sk-ant-[a-zA-Z0-9_\-]{20,}", re.IGNORECASE), "[REDACTED_ANTHROPIC_KEY]"),
     ("GitHub Token", re.compile(r"gh[pousr]_[0-9a-zA-Z]{36}"), "[REDACTED_GITHUB_TOKEN]"),
     ("Generic Bearer Token", re.compile(r"Bearer\s+[a-zA-Z0-9_\-\.]{16,}", re.IGNORECASE), "Bearer [REDACTED_BEARER_TOKEN]"),
     
