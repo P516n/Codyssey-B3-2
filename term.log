@@ -1,0 +1,42 @@
+$ python main.py commit
+[INFO] Git status 수집 완료: 6개 파일 변경 감지
+[INFO] Git diff 수집 완료: 339줄
+[INFO] AI API 요청 중... (Provider: codyssey, Model: gpt-5-mini)
+[DONE] 커밋 메시지 생성 완료
+[INFO] AI API 호출 횟수: 1회
+
+--- Commit Message ---
+feat: 커밋/PR 자동 생성 도구 gitgen 추가
+
+- git 변경 컨텍스트(git status/git diff)를 수집해 AI 프롬프트로 전달하고 커밋 메시지 및 PR 초안을 생성하도록 기능 추가
+- 안전 모드 기반 민감정보 마스킹, 단 1회 API 호출 기반 후처리 검증 등 비용·보안 최적화 로직 적용
+- README.md 문서화 및 main.py CLI 진입점, gitgen/ 패키지(주요 모듈)와 tests 추가
+----------------------
+
+$ python main.py pr
+[INFO] 현재 브랜치: main
+[INFO] Git status 수집 완료: 6개 파일 변경 감지
+[INFO] Git diff 수집 완료: 339줄
+[INFO] AI API 요청 중... (Provider: codyssey, Model: gpt-5-mini)
+[DONE] PR 초안 생성 완료
+[INFO] AI API 호출 횟수: 1회
+
+--- PR Title ---
+feat: Git 변경 기반 커밋·PR 자동 생성 도구(GitGen) 문서 및 핵심 구조 추가
+
+--- PR Body ---
+## Why
+- Git 변경사항을 분석해 일관된 커밋 메시지와 PR 초안을 자동 생성하는 도구가 필요했습니다.
+- 여러 AI 제공자(범용 AI_API_KEY)와 안전한 프롬프트 전송(민감정보 마스킹, diff 제한)을 지원하기 위해 문서화 및 구조화가 요구되었습니다.
+
+## What
+- 프로젝트 README 대폭 추가: 기능 설명, 아키텍처, 사용법, Safe Mode, 비용 최적화 가이드 등 포함.
+- gitgen 패키지 및 provider 구조(플랫폼별 REST 클라이언트 설계: Gemini/OpenAI/Anthropic 등)와 주요 모듈 설명(git_service, prompt_builder, validator, safe_mode 등) 추가.
+- CLI 진입점(main.py) 및 .ai-gitgen.yml.example, .env.example 템플릿 추가로 팀 컨벤션 및 환경 설정 안내 제공.
+- 단일 API 호출 원칙, 후처리 기반 출력 검증, Safe Mode(민감정보 마스킹·diff 제한) 설계 문서화 및 테스트 목록 포함.
+
+## How to Test
+- 환경변수 설정: .env.example 복사 후 AI_API_KEY 값을 설정하거나 세션에 export/역할 변수로 주입하고 main.py 명령 실행(예: python main.py commit / python main.py pr).
+- Safe Mode 동작 확인: 변경사항에 민감값 예시를 포함한 후 python main.py pr --safe-mode 실행하여 마스킹 및 diff 트렁케이션 동작 확인.
+- 단위/통합 테스트 실행: python -m unittest discover tests -v 로 포함된 테스트들이 통과하는지 확인.
+----------------
