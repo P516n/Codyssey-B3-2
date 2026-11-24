@@ -63,6 +63,7 @@ Codyssey-B3-2/
 │   ├── test_providers.py
 │   └── test_cli.py
 ├── .ai-gitgen.yml.example      # 팀 컨벤션 설정 예시 파일
+├── .env.example                # API KEY 환경 변수 예시 파일
 ├── main.py                     # CLI 실행 진입점 (commit, pr)
 └── README.md                   # 사용자 및 운영 가이드
 ```
