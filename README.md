@@ -39,9 +39,6 @@
 
 ```
 Codyssey-B3-2/
-├── .agents/                    # 과제 요구사항 및 평가 기준
-│   ├── specification.md
-│   └── assessment.md
 ├── gitgen/                     # 핵심 도메인 로직 패키지
 │   ├── __init__.py
 │   ├── git_service.py          # Git 변경 사항 수집 (branch, status, diff)
