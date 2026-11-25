@@ -1,0 +1,17 @@
+# Agent workspace directory
+.agents/
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+.env
+.venv/
+env/
+venv/
+
+# VSCode
+.vscode/
