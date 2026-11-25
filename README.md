@@ -80,7 +80,7 @@ Codyssey-B3-2/
 
 저장소를 클론한 후 프로젝트 루트에서 바로 실행할 수 있습니다:
 ```bash
-git clone https://github.com/your-username/Codyssey-B3-2.git
+git clone https://github.com/P516n/Codyssey-B3-2.git
 cd Codyssey-B3-2
 ```
 
